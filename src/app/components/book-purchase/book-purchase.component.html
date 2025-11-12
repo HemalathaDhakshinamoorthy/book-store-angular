@@ -1,0 +1,8 @@
+<div class="container" *ngIf="book">
+  <h2>Purchase Book</h2>
+  <p><strong>Title:</strong> {{book.title}}</p>
+  <p><strong>Author:</strong> {{book.author}}</p>
+  <p><strong>Price:</strong> ${{book.price}}</p>
+  <button mat-raised-button color="accent" (click)="purchase()">Purchase</button>
+  <div *ngIf="error" class="error">{{error}}</div>
+</div>

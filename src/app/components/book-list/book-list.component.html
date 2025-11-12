@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="notification" *ngIf="notificationMessage" [ngClass]="{ 'success': notificationType === 'success', 'error': notificationType === 'error' }">
+    {{ notificationMessage }}
+  </div>
+
+  <mat-card class="book-list-card">
+    <mat-card-title class="card-title">📚 Books List</mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="books" class="mat-elevation-z8 full-width-table">
+        
+        <!-- Serial Number Column -->
+        <ng-container matColumnDef="serial">
+          <th mat-header-cell *matHeaderCellDef class="columnHeaderDef"> # </th>
+          <td mat-cell *matCellDef="let book; let i = index" class="matRowDef"> {{ i + 1 }} </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="columnHeaderDef"> Title </th>
+          <td mat-cell *matCellDef="let book" class="matRowDef"> {{book.title}} </td>
+        </ng-container>
+
+        <!-- Author Column -->
+        <ng-container matColumnDef="author">
+          <th mat-header-cell *matHeaderCellDef class="columnHeaderDef"> Author </th>
+          <td mat-cell *matCellDef="let book" class="matRowDef"> {{book.author}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef class="columnHeaderDef"> Price </th>
+          <td mat-cell *matCellDef="let book" class="matRowDef"> {{book.price}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="columnHeaderDef"> Actions </th>
+          <td mat-cell *matCellDef="let book" class="action-buttons">
+            <button mat-icon-button color="primary" [routerLink]="['/books/edit', book.id]" matTooltip="Edit">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteBook(book.id)" matTooltip="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!--<button mat-icon-button color="accent" [routerLink]="['/books/purchase', book.id]" matTooltip="Purchase">
+              <mat-icon>shopping_cart</mat-icon>
+            </button>-->
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Definitions -->
+        <tr mat-header-row *matHeaderRowDef="['serial', 'title','author','price','actions']"></tr>
+        <tr mat-row class="matRowDef" *matRowDef="let row; columns: ['serial', 'title','author','price','actions']"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

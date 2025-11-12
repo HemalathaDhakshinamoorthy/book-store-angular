@@ -1,0 +1,35 @@
+.title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.navMenu {
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  color: white; /* Ensure links are white */
+  transition: color 0.3s ease;
+}
+
+.navMenu:hover {
+  color: #ffe082; /* Add a hover effect */
+}
+
+.navMenu mat-icon {
+  margin-right: 5px;
+  color: white; /* Ensure icons are white */
+}
+
+mat-toolbar {
+  background: linear-gradient(90deg, #ff5722, #ff9800); /* Gradient background */
+  color: white; /* Text color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

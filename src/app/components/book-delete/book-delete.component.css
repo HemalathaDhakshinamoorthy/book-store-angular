@@ -1,0 +1,43 @@
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ff5722;
+  margin-bottom: 20px;
+}
+
+mat-dialog-content {
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: tomato;
+}
+
+button {
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  text-transform: uppercase;
+  font-weight: bold;
+  color: tomato;
+}
+
+button:hover {
+  background-color: #ff5722; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+}
+
+.deleteButton:hover {
+  color: white; /* Ensure text color is white on hover */
+}
+
+.cancelButton:hover {
+  color: white; /* Ensure text color is white on hover */
+}

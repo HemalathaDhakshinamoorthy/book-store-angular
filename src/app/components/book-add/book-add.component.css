@@ -1,0 +1,53 @@
+.container {
+  padding: 20px;
+}
+
+.add-book-card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #ff5722;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: tomato;
+}
+
+button {
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background-color: #ff5722; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+}
+
+.addBookButton:hover {
+  color: white; /* Ensure text color is white on hover */
+}
+
+.cancelButton:hover {
+  color: white; /* Ensure text color is white on hover */
+}
