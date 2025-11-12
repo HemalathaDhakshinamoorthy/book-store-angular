@@ -1,17 +1,40 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span class="title">📚 The Reading Room</span>
-    <span class="spacer"></span>
-    <a mat-button class="navMenu" routerLink="/books">
-      <mat-icon>menu_book</mat-icon> Books
-    </a>
-    <a mat-button class="navMenu" routerLink="/books/add">
-      <mat-icon>add</mat-icon> Add Book
-    </a>
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-    <span>Welcome to The Reading Room! Grab a seat, open a book, and let your next story begin.</span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<!-- Top Info Bar -->
+<div class="top-bar">
+  <span>📦 14 DAYS REFUND GUARANTEE</span>
+  <span class="right">FAST DELIVERY | FREE DELIVERY OVER ₹5000</span>
+</div>
 
-  
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <span class="brand"><b>The Reading Room</b></span>
+    <p class="tagline">Grab a seat, open a book, and let your next story begin.</p>
+  </div>
+
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Search over wide range of books" />
+    </mat-form-field>
+  </div>
+
+  <div class="header-actions">
+    <button mat-button>Login</button>
+    <button mat-button routerLink="signup">Sign Up</button>
+    <!--<button mat-icon-button aria-label="Cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>-->
+  </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="nav-bar">
+  <a routerLink="booklist">All Books(Grid View)</a>
+  <a routerLink="/bestsellers">Bestsellers</a>
+  <a routerLink="/computer-science">Computer Science</a>
+  <a routerLink="/entertainment">Entertainment</a>
+  <a routerLink="/education">Education</a>
+  <a routerLink="/puzzles">Puzzles</a>
+  <a routerLink="/story">Story</a>
+  <a routerLink="/health">Health</a>
+</nav>

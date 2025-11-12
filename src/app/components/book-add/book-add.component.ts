@@ -30,7 +30,7 @@ export class BookAddComponent {
   onSubmit() {
     if (this.bookForm.invalid) return;
     this.bookService.addBook(this.bookForm.value)
-      .then(() => this.router.navigate(['/books']))
+      .then(() => this.router.navigate(['/booklist']))
       .catch(err => this.error = err.message);
   }
 }

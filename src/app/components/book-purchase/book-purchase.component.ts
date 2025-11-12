@@ -31,7 +31,7 @@ export class BookPurchaseComponent implements OnInit {
     this.bookService.purchaseBook(this.book.id)
       .then(res => {
         alert(res.data.message);
-        this.router.navigate(['/books']);
+        this.router.navigate(['/booklist']);
       })
       .catch(err => this.error = err.message);
   }

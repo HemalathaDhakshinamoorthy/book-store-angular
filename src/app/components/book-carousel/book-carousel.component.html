@@ -1,0 +1,16 @@
+<!-- Book Carousel / Grid -->
+<section class="book-grid">
+  <mat-card *ngFor="let book of books" class="book-card">
+    <img mat-card-image [src]="book.image" [alt]="book.title">
+    <mat-card-title>{{ book.title }}</mat-card-title>
+    <mat-card-subtitle><strong>Author: </strong>{{ book.author }}</mat-card-subtitle>
+    <mat-card-content>
+      <!--<p>{{ book.type }}</p>-->
+      <p class="price">
+        {{ book.price | currency:'INR' }}
+        <span class="old-price">{{ book.oldPrice | currency:'INR' }}</span>
+      </p>
+    </mat-card-content>
+    <button mat-raised-button class="add-btn">Add To Basket</button>
+  </mat-card>
+</section>

@@ -39,7 +39,7 @@ export class BookEditComponent implements OnInit {
   onSubmit() {
     if (this.bookForm.invalid) return;
     this.bookService.updateBook(this.bookId, this.bookForm.value)
-      .then(() => this.router.navigate(['/books']))
+      .then(() => this.router.navigate(['/booklist']))
       .catch(err => this.error = err.message);
   }
 }

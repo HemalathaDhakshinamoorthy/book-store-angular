@@ -1,0 +1,49 @@
+.container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.sign-up-card {
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ff5722;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button[mat-button] {
+  transition: transform 0.2s ease;
+  margin-bottom: 10px;
+  background-color: #ff5722; /* Change background color on hover */
+  color: white;
+}
+
+button[mat-button]:hover {
+  transform: scale(1.1);
+}
