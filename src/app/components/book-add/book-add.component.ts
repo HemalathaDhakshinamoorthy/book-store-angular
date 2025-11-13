@@ -18,19 +18,41 @@ import { CommonModule } from '@angular/common';
 export class BookAddComponent {
   bookForm: FormGroup;
   error = '';
+  notificationMessage: string | null = null;
+  notificationType: 'success' | 'error' | null = null;
 
   constructor(private fb: FormBuilder, private bookService: BookService, private router: Router) {
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]]
+      category: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
+      oldPrice: [0, [Validators.required, Validators.min(0)]],
+      image: ['']
     });
   }
 
   onSubmit() {
     if (this.bookForm.invalid) return;
     this.bookService.addBook(this.bookForm.value)
-      .then(() => this.router.navigate(['/booklist']))
-      .catch(err => this.error = err.message);
+      .then(() => {
+        this.router.navigate(['/booklist'], {
+          state: { notificationMessage: 'Book added successfully!', notificationType: 'success' }
+        });
+      })
+      .catch(err => {
+        this.error = err.message
+        this.showNotification('Failed to update book.', 'error');
+      });
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.notificationMessage = message;
+    this.notificationType = type;
+
+    setTimeout(() => {
+      this.notificationMessage = null;
+      this.notificationType = null;
+    }, 3000);
   }
 }

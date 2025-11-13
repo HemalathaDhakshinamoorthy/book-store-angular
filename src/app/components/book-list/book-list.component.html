@@ -4,7 +4,14 @@
   </div>
   <div class="book-list-wrapper">
   <mat-card class="book-list-card">
-    <mat-card-title class="card-title">📚 Books List</mat-card-title>
+    <mat-card-title class="card-title">
+      <div class="title-row">
+        <span>📚 Books List</span>
+        <button mat-raised-button color="primary" class="add-book-btn" [routerLink]="['/booklist', 'add']">
+          <mat-icon>add</mat-icon>&nbsp;Add Book
+        </button>
+      </div>
+    </mat-card-title>
     <mat-card-content>
       <table mat-table [dataSource]="books" class="mat-elevation-z8 full-width-table">
         

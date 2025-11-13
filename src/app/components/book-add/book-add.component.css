@@ -26,6 +26,10 @@ mat-form-field {
   width: 100%;
 }
 
+.formInput {
+  margin-left: 10px
+}
+
 .button-container {
   display: flex;
   justify-content: space-between;
