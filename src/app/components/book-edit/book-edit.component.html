@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="notification" *ngIf="notificationMessage" [ngClass]="{ 'success': notificationType === 'success', 'error': notificationType === 'error' }">
+    {{ notificationMessage }}
+  </div>
   <mat-card class="edit-book-card">
     <mat-card-title class="card-title">📚 Edit Book</mat-card-title>
     <mat-card-content>
@@ -14,8 +17,18 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Category</mat-label>
+          <input class="formInput" matInput formControlName="category" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Price</mat-label>
           <input class="formInput" matInput type="number" formControlName="price" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Old Price</mat-label>
+          <input class="formInput" matInput type="number" formControlName="oldPrice" required>
         </mat-form-field>
 
         <div class="button-container">

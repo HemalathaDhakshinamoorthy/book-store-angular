@@ -19,13 +19,18 @@ export class BookEditComponent implements OnInit {
   bookForm: FormGroup;
   error = '';
   bookId!: number;
+  notificationMessage: string | null = null;
+  notificationType: 'success' | 'error' | null = null;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private bookService: BookService) {
     this.bookForm = this.fb.group({
       id: [null],
       title: ['', Validators.required],
       author: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]]
+      category: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
+      oldPrice: [0, [Validators.required, Validators.min(0)]],
+      image: ['']
     });
   }
 
@@ -39,7 +44,24 @@ export class BookEditComponent implements OnInit {
   onSubmit() {
     if (this.bookForm.invalid) return;
     this.bookService.updateBook(this.bookId, this.bookForm.value)
-      .then(() => this.router.navigate(['/booklist']))
-      .catch(err => this.error = err.message);
+      .then(() => {
+        this.router.navigate(['/booklist'], {
+          state: { notificationMessage: 'Book updated successfully!', notificationType: 'success' }
+        });
+      })
+      .catch(err => {
+        this.error = err.message;
+        this.showNotification('Failed to update book.', 'error');
+      });
+  }
+
+  showNotification(message: string, type: 'success' | 'error') {
+    this.notificationMessage = message;
+    this.notificationType = type;
+
+    setTimeout(() => {
+      this.notificationMessage = null;
+      this.notificationType = null;
+    }, 3000);
   }
 }

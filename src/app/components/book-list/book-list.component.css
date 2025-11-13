@@ -2,10 +2,29 @@
   padding: 20px;
 }
 
+.book-list-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 200%;
+}
+
 .book-list-card {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
+  width: 150%; /* expands the table width */
+  max-width: 1400px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.full-width-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 12px 16px;
 }
 
 .card-title {

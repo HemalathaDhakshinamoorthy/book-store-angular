@@ -1,11 +1,10 @@
-import { BackgroundFetch } from './../../../../node_modules/@npmcli/git/node_modules/lru-cache/dist/esm/index.d';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDeleteComponent } from '../book-delete/book-delete.component';
 import { BookService } from '../../core/services/book.service';
@@ -13,7 +12,14 @@ import { BookService } from '../../core/services/book.service';
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [
+    CommonModule, 
+    MatCardModule, 
+    MatTableModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    RouterModule
+  ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css'
 })
@@ -25,12 +31,25 @@ export class BookListComponent implements OnInit {
   notificationType: 'success' | 'error' | null = null;
 
   constructor(
+    private router: Router,
     private bookService: BookService, 
     private dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) { }
 
-  ngOnInit() { 
-    this.loadBooks(); 
+  ngOnInit() {
+   const nav = (this.router as any).getCurrentNavigation ? (this.router as any).getCurrentNavigation() : null;
+   const state = (nav && nav.extras && nav.extras.state) ? nav.extras.state : (window.history.state || {});
+    if (state && state.notificationMessage) {
+      this.notificationMessage = state.notificationMessage;
+      this.notificationType = state.notificationType ?? 'success';
+      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.notificationMessage = null;
+        this.notificationType = null;
+      }, 3000);
+    }
+    this.loadBooks();
   }
 
   loadBooks() {
