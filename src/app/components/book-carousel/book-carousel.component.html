@@ -1,5 +1,8 @@
 
 <!-- Book Carousel / Grid -->
+<div class="notification" *ngIf="notificationMessage" [ngClass]="{ 'success': notificationType === 'success', 'error': notificationType === 'error' }">
+  {{ notificationMessage }}
+</div>
 <section class="book-grid">
   <mat-card *ngFor="let book of books" class="book-card">
     <img mat-card-image src="assets/book-covers/the-women.jpg" [alt]="book.title">

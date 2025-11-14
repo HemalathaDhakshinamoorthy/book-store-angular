@@ -2,6 +2,8 @@
   <mat-card class="sign-up-card">
     <mat-card-title class="card-title">Create an Account</mat-card-title>
     <mat-card-content>
+      <div class="already-user">Already a user? <a routerLink="/login">Login here</a></div>
+      
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Full name</mat-label>
@@ -48,6 +50,10 @@
         </div>
 
         <div class="server-error" *ngIf="serverError">{{ serverError }}</div>
+        <div class="registered" *ngIf="registeredMessage">
+          {{ registeredMessage }} &nbsp;
+          <a routerLink="/login">Go to Login</a>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

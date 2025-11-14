@@ -28,6 +28,7 @@ export class SignUpComponent {
   signUpForm: FormGroup;
   submitting = false;
   serverError = '';
+  registeredMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     console.log('SignUpComponent initialized');
@@ -47,19 +48,22 @@ export class SignUpComponent {
 
   onSubmit(): void {
     this.serverError = '';
+    this.registeredMessage = null;
     if (this.signUpForm.valid) {
       this.signUpForm.markAllAsTouched();
       return;
     }
     this.submitting = true;
-    const { name, email, password } = this.signUpForm.value;
-    this.authService.signUp({ name, email, password }).subscribe({
-      next: () => {
-        // navigate to home and optionally pass a notification state
-        this.router.navigate(['/'], { state: { notificationMessage: 'Account created successfully', notificationType: 'success' } });
+    const { name, email, password, phone, userType } = this.signUpForm.value;
+    this.authService.signUp({ name, email, password, phone, userType }).subscribe({
+      next: (res) => {
+        this.submitting = false;
+        this.registeredMessage = 'Account created successfully';
+        this.registeredMessage = 'Registration successful. You can now log in.';
+        this.signUpForm.reset();
       },
       error: (err: any) => {
-        this.serverError = err?.error?.message || 'Sign up failed';
+        this.serverError = err?.error?.message || 'Sign up failed. Try again.';
         this.submitting = false;
       }
     });
