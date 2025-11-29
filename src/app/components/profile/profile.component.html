@@ -1,0 +1,16 @@
+<mat-card *ngIf="user$ | async as user; else noUser">
+  <mat-card-title>Account</mat-card-title>
+  <mat-card-content>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>ID:</strong> {{ user.id }}</p>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #noUser>
+  <mat-card>
+    <mat-card-content>
+      <p>No user information available. Please log in.</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

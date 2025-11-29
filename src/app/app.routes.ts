@@ -2,13 +2,15 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,
     children: [
       { path: '', redirectTo: 'book-carousel', pathMatch: 'full' }, // Default child route
-      { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignUpComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'book-carousel', loadComponent: () => import('./components/book-carousel/book-carousel.component').then(m => m.BookCarouselComponent) },
       { path: 'booklist', loadComponent: () => import('./components/book-list/book-list.component').then(m => m.BookListComponent) },
       { path: 'booklist/add', loadComponent: () => import('./components/book-add/book-add.component').then(m => m.BookAddComponent) },

@@ -31,7 +31,6 @@ export class SignUpComponent {
   registeredMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
-    console.log('SignUpComponent initialized');
     this.signUpForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],

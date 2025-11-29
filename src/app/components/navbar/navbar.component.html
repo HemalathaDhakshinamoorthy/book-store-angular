@@ -19,18 +19,30 @@
   </div>
 
   <div class="header-actions">
-    <button mat-button routerLink="login">Login</button>
-    <button mat-button routerLink="signup">Sign Up</button>
-    <!--<button mat-icon-button aria-label="Cart">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>-->
+    <ng-container *ngIf="(isLoggedIn$ | async) === false; else loggedInTpl">
+      <button mat-button routerLink="/login">Login</button>
+      <button mat-button routerLink="/signup">Sign Up</button>
+    </ng-container>
+
+    <ng-template #loggedInTpl>
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu" aria-label="Account">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #accountMenu="matMenu">
+        <button mat-menu-item routerLink="/profile">Profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+      <button mat-icon-button aria-label="Cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </ng-template>
   </div>
 </header>
 
 <!-- Navigation Bar -->
 <nav class="nav-bar">
   <a routerLink="/book-carousel">Home</a>
-  <a routerLink="/booklist">All Books(Grid View)</a>
+  <a *ngIf="isAdmin$ | async" routerLink="/booklist">All Books(Grid View)</a>
   <a routerLink="/bestsellers">Bestsellers</a>
   <a routerLink="/computer-science">Computer Science</a>
   <a routerLink="/entertainment">Entertainment</a>

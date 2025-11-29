@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService, User } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -45,13 +45,16 @@ export class LoginComponent {
     const { email, password } = this.loginForm.value;
     this.auth.login({ email, password }).subscribe({
       next: (res) => {
+        const token = res?.token ?? null;
+        const user: User | null = res?.user ?? null;
+        if (token || user) {
+          this.auth.setAuth(token, user);
+        }
         this.submitting = false;
-        // optionally store token: localStorage.setItem('token', res.token);
         this.router.navigate(['/'], { state: { notificationMessage: 'Login successful', notificationType: 'success' } });
       },
       error: (err) => {
         this.submitting = false;
-        // server should return appropriate message for not-registered or bad credentials
         this.serverError = err?.error?.message || 'Login failed. Check credentials.';
       }
     });
